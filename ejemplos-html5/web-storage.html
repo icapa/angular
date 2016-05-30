@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Web Storage</title>
+</head>
+<body>
+    <script>
+        // Preguntamos si la api está soportada
+        if (typeof (Storage)!== "undefined"){
+            // Local Storage
+
+            // Escribimos
+            //localStorage.setItem("valorLocal","Soy valor local");
+            // Recogemos el valor del almacen local
+            //var mensajeLocal = localStorage.getItem("valorLocal");
+            //alert(mensajeLocal);
+
+            // Session Storage
+            //sessionStorage.setItem("valorSesion","Soy valor sesion");
+            var mensajeSesion = sessionStorage.getItem("valorSesion");
+            alert(mensajeSesion);
+        }
+
+
+    </script>
+</body>
+</html>
