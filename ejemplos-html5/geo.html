@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Geolocalizacion</title>
+</head>
+<body>
+    <script>
+        // Preguntar si soporta geolocalizacion
+        if (navigator.geolocation){
+            // Se pide la posicion al usuario
+            navigator.geolocation.getCurrentPosition(
+                    // En caso de obtener la posicion
+                    function (datos) {
+
+                        alert("Latitud: " +
+                                datos.coords.latitude+
+                                "\nLongitud: "+ datos.coords.longitude);
+
+                    },
+                    // Si no autorizamos
+                    function () {
+                        alert("El usuario no autoriza");
+                    }
+
+            );
+        }
+        // No esta soportado
+        else{
+            alert("El navegador no soporta geolocalizacion");
+        }
+
+    </script>
+</body>
+</html>
