@@ -12,8 +12,20 @@
         <!-- Boton saludar -->
         <button ng-click="saludar()">Saludar</button>
         <!-- Otro mensaje -->
-        <p>{{ otroMensaje }} Menuda traca</p>
+        <p>{{ otroMensaje }} </p>
     </div>
+
+    <!-- Asociamos el controlador padre -->
+    <div ng-controller="controladorPadre">
+        <button ng-click="notificarHijo()">Notificar al hijo</button>
+
+        <div ng-controller="controladorHijo">
+            <!-- Asociamos el controlador hijo -->
+            <button ng-click="notificarPadre()">Notificar al padre</button>
+        </div>
+    </div>
+
+
     <script>
         // Setter de la aplicacion
         angular
@@ -27,8 +39,39 @@
                 $scope.saludar = function(){
                     alert("Buenas noches");
                 };
-                $scope.otroMensaje = "Soy un mensaje mas en el controlador";
+                var otroMensaje = "Soy un mensaje mas en el controlador";
             });
+        // Controlador padre.
+
+        angular
+                .module("test")
+                .controller("controladorPadre",function($scope){
+                    $scope.$on("EventoDesdeHijo",function(evento,dato){
+                        alert("Controlador Padre:\n"+dato);
+                    });
+                    $scope.notificarHijo = function(){
+                        $scope.$broadcast(
+                            "EventoDesdePadre",
+                            "Soy un evento desde padre"
+                        );
+                    };
+                });
+
+        // Controlador hijo.
+        angular
+                .module("test")
+                .controller("controladorHijo",function($scope){
+                    $scope.$on("EventoDesdePadre",function(evento,dato){
+                       alert("Controlador Hijo:\n" + dato);
+                    });
+                    $scope.notificarPadre = function(){
+                        $scope.$emit(
+                            "EventoDesdeHijo",
+                            "Soy un evento desde hijo"
+                        );
+                    };
+                });
+
     </script>
 </body>
 </html>
