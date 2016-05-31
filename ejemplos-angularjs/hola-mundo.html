@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hola Mundo en AngularJS</title>
+    <script src="node_modules/angular/angular.js"></script>
+
+</head>
+<!-- La directiva ngApp instancia la aplicacion angular js -->
+<body ng-app>
+    <!-- Caja de texto -->
+    <!-- La directiva ngModel sincroniza vista > modelo -->
+    <input type="text" ng-model="nombre" />
+    <!-- Doble llave sincroniza modelo > vista -->
+    <!-- Se muestra un mensaje con el nombre de la caja -->
+    <p>Hola {{ nombre }}, buenas noches!!</p>
+    <!-- Otro mensaje -->
+    <!-- La doble llave es un alias de la directiva ngBind -->
+    <!-- <p ng-bind="nombre"></p> -->
+
+</body>
+</html>
