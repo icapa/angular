@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Inyección Dependencias</title>
+    <script src="node_modules/angular/angular.js"></script>
+</head>
+<body ng-app="test">
+
+    <!-- Vista del controlador1 -->
+    <div ng-controller="Controlador1">
+        <h4>Inyeccion con anotacion de array en linea</h4>
+        <ul>
+            <li ng-repeat="mensaje in mensajes">{{ mensaje }}</li>
+        </ul>
+    </div>
+
+    <!-- Vista del controlador2 -->
+    <div ng-controller="Controlador2">
+        <h4>Inyeccion con propiedad $inject</h4>
+        <ul>
+            <li ng-repeat="mensaje in mensajes">{{ mensaje }}</li>
+        </ul>
+    </div>
+
+    <div ng-controller="Controlador3">
+        <h4>Inyeccion con parametros de funcion</h4>
+        <ul>
+            <li ng-repeat="mensaje in mensajes">{{ mensaje }}</li>
+        </ul>
+    </div>
+
+
+    <script>
+        // Setter del modulo
+        angular
+            .module("test",[]);
+
+        // Servicio de mensajes
+        angular.module("test")
+                .service("ServicioMensajes",function(){
+                    this.dameMensajes = function(){
+                        return [
+                                "Buenas noches",
+                                "Ya queda menos para irse a dormir"
+                        ];
+                    };
+                });
+        // Inyeccion de dependencias con anotacion de array en linea.
+        angular.module("test")
+                .controller("Controlador1", [
+                    "$scope","ServicioMensajes",
+                        function($scope,ServicioMensajes){
+                            $scope.mensajes=ServicioMensajes.dameMensajes();
+                        }
+                ]);
+        // Inyeccion de dependencias con propiedad $inject.
+        var controlador2 = function($scope,ServicioMensajes){
+            $scope.mensajes = ServicioMensajes.dameMensajes();
+        };
+        controlador2.$inject = ["$scope","ServicioMensajes"];
+        angular.module("test").controller("Controlador2",controlador2);
+
+        // Inyeccion de dependencias con parámetros de función.
+        angular
+                .module("test")
+                .controller("Controlador3",function($scope,ServicioMensajes){
+                   $scope.mensajes = ServicioMensajes.dameMensajes();
+                });
+
+    </script>
+</body>
+</html>
