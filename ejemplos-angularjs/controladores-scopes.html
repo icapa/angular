@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejemplo de Controladores y Scopes</title>
+    <script src="node_modules/angular/angular.js"></script>
+</head>
+<body ng-app="test">
+    <div ng-controller="miPrimerControlador">
+        <!-- Mensaje -->
+        <p>{{ mensaje }}</p>
+        <!-- Boton saludar -->
+        <button ng-click="saludar()">Saludar</button>
+        <!-- Otro mensaje -->
+        <p>{{ otroMensaje }} Menuda traca</p>
+    </div>
+    <script>
+        // Setter de la aplicacion
+        angular
+                .module("test",[]);
+
+        // Controlador 'miPrimerControlador'
+        angular
+                .module("test")
+                .controller("miPrimerControlador",function($scope){
+                $scope.mensaje = "Soy un mensaje en un controlador.";
+                $scope.saludar = function(){
+                    alert("Buenas noches");
+                };
+                $scope.otroMensaje = "Soy un mensaje mas en el controlador";
+            });
+    </script>
+</body>
+</html>
