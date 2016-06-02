@@ -1,16 +1,16 @@
 angular
     .module("cookbook")
-    .service("ServicioRecetas",function(){
+    .service("ServicioRecetas",function($http){
         // Toda funcionalidad que quieras exponer hacia afuera, tiene
         // que estar publicada en this.
         this.obtenerRecetas = function(){
-            return [{
-                nombre: "Solomillo al Pedro Ximénez"
-            },{
-                nombre: "Tortilla de patata"
-            },{
-                nombre: "Crepes con Nutella"
-            }];
-        }
+
+            return $http.get("http://localhost:8000/api/recetas");
+
+        };
+        // Guardamos la receta
+        this.guardarReceta = function(receta){
+            return $http.post("http://localhost:8000/api/recetas",receta);
+        };
     });
 

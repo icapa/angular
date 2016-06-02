@@ -1,3 +1,5 @@
 .idea
 media
 node_modules
+cookbook/api
+cookbook/static
