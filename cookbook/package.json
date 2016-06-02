@@ -1,0 +1,14 @@
+{
+  "name": "cookbook",
+  "version": "1.0.0",
+  "description": "Esto es un libro de recetas de cocina",
+  "scripts": {
+    "start": "lite-server"
+  },
+  "author": "Keep Coders",
+  "license": "MIT",
+  "dependencies": {
+    "angular": "^1.5.6",
+    "lite-server": "^2.2.0"
+  }
+}

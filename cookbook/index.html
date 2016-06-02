@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cookbook - Recetas de cocina</title>
+    <!-- Angular -->
+    <script src="node_modules/angular/angular.js"></script>
+    <!-- Documento de configuracion del modulo -->
+    <script src="scripts/app.js"></script>
+    <!-- Controladores -->
+    <script src="scripts/controllers/lista-recetas.js"></script>
+    <!-- Servicios -->
+    <script src="scripts/services/servicio-recetas.js"></script>
+</head>
+<!-- hacemos el bootstrapping del modulo -->
+<body ng-app="cookbook">
+
+    <!-- Cabecera de la aplicacion -->
+    <header>
+        <h1>Mi Libro de Recetas</h1>
+    </header>
+    <!-- Coleccion de recetas -->
+    <section ng-controller="ListaRecetas">
+        <ul>
+            <li ng-repeat="receta in recetas">{{ receta.nombre }}</li>
+        </ul>
+    </section>
+
+
+</body>
+</html>
