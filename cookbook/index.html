@@ -11,6 +11,8 @@
     <script src="scripts/controllers/lista-recetas.js"></script>
     <!-- Servicios -->
     <script src="scripts/services/servicio-recetas.js"></script>
+    <!-- Directivas -->
+    <script src="scripts/directives/formulario-alta.js"></script>
 </head>
 <!-- hacemos el bootstrapping del modulo -->
 <body ng-app="cookbook">
@@ -22,8 +24,8 @@
     <!-- Coleccion de recetas -->
     <section ng-controller="ListaRecetas">
         <!-- Formulario de alta de recetas -->
-        <input type="text" ng-model="nombreReceta">
-        <button ng-click="guardarReceta()">Guardar Receta</button>
+        <formulario-alta al-hacer-click="guardarReceta(texto)"></formulario-alta>
+
         <ul>
             <li ng-repeat="receta in recetas">{{ receta.nombre }}</li>
         </ul>

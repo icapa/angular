@@ -10,8 +10,8 @@ angular
             });
         // Guardamos la receta
         
-        $scope.guardarReceta = function(){
-            var receta = {nombre: $scope.nombreReceta};
+        $scope.guardarReceta = function(texto){
+            var receta = {nombre: texto};
             ServicioRecetas.guardarReceta(receta).then(function(respuesta){
                 $scope.recetas.push(respuesta.data)
             });
