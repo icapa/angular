@@ -9,10 +9,15 @@ angular
             // funcion 'then()'.
             // Cercada para que funcione el this
             var self = this;
-            ServicioRecetas.obtenerRecetas().then(function(respuesta) {
-                // En la pripiedad 'dada' de la respuesta http tenemos el cuerpo de la misma
-                self.recetas = respuesta.data;
-            });
+
+            self.$onInit = function(){
+                
+                ServicioRecetas.obtenerRecetas().then(function(respuesta) {
+                    // En la pripiedad 'dada' de la respuesta http tenemos el cuerpo de la misma
+                    self.recetas = respuesta.data;
+                });
+            };
+
         }
 
     });
