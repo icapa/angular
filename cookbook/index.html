@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Con base indicamos la ruta base a
+    partir de la cual se construye el SPA -->
+    <base href="/">
     <meta charset="UTF-8">
     <title>Cookbook - Recetas de cocina</title>
     <!-- Angular -->
     <script src="node_modules/angular/angular.js"></script>
+    <script src="node_modules/@angular/router/angular1/angular_1_router.js"></script>
     <!-- Documento de configuracion del modulo -->
     <script src="scripts/app.js"></script>
     <!-- Controladores -->
@@ -15,26 +19,13 @@
     <script src="scripts/directives/formulario-alta.js"></script>
     <!-- Componentes -->
     <script src="scripts/components/mis-recetas.js"></script>
+    <script src="scripts/components/raiz.js"></script>
+    <script src="scripts/components/nueva-receta.js"></script>
 </head>
 <!-- hacemos el bootstrapping del modulo -->
 <body ng-app="cookbook">
-
-    <!-- Cabecera de la aplicacion -->
-    <header>
-        <h1>Mi Libro de Recetas</h1>
-    </header>
-    <!-- Coleccion de recetas -->
-    <section ng-controller="ListaRecetas">
-        <!-- Formulario de alta de recetas -->
-        <formulario-alta al-hacer-click="guardarReceta(texto)"></formulario-alta>
-        <mis-recetas></mis-recetas>
-        <!--
-        <ul>
-            <li ng-repeat="receta in recetas">{{ receta.nombre }}</li>
-        </ul>
-        -->
-    </section>
-
+    <!-- Componente raiz -->
+    <raiz></raiz>
 
 </body>
 </html>
