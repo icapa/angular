@@ -22,13 +22,27 @@ angular
             // Con 'link' establecemos la lógica de la directiva y además
             // podemos hacer manipulación del DOM de la vista
             link: function (scope) {
-
+                // Creo un nuevo objeto receta
+                scope.receta = {
+                    nombre: "",
+                    ingredientes: []
+                };
                 // Manejador del botón 'Aceptar'
                 scope.notificarTexto = function(){
 
                     // Notificamos al scope padre
                     scope.alHacerClick({ texto: scope.texto });
-                }
+                };
+
+                // Añadimos el ingrediente procedente del componente
+                scope.agregarIngrediente = function(ingrediente){
+                    scope.receta.ingredientes.push(ingrediente);
+                };
+
+                // Eliminamos el ingrediente que está en la posición indicada por indice
+                scope.eliminarIngrediente = function(indice){
+                    scope.receta.ingredientes.splice(indice,1);
+                };
             },
         };
     });

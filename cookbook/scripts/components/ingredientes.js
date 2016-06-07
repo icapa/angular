@@ -13,12 +13,12 @@ angular
 
             // Inicializamos los valores por defecto del componente
             self.$onInit = function(){
-                self.nuevoIngrediente = {
+                self.ingrediente = {
                     nombre: "",
                     cantidad: 1
                 };
                 // Coleccion de ingredientes
-                self.coleccion=[];
+                //self.coleccion=[];
             };
 
 
@@ -26,16 +26,21 @@ angular
                 // Obtengo la tecla pulsada
                 var tecla = evento.which || evento.keyCode;
                 // Si la tecla es el intro
-                if (tecla===13 && self.nuevoIngrediente.nombre ){
-                    //Añado el ingrediente a la colección
-                    self.coleccion.push(self.nuevoIngrediente);
+                if (tecla===13 && self.ingrediente.nombre ){
+                    //Notificamos el nuevo ingrediente
+                    self.nuevoIngrediente({"ingrediente": self.ingrediente});
 
                     // SE reinicia el ingrediente
-                    self.nuevoIngrediente= {
+                    self.ingrediente= {
                         nombre: "",
                         cantidad: 1
                     };
                 }
             };
+            // Notificamos que se ha pulsado el boton eliminar sobre un ingrediente
+            self.eliminar = function(indice){
+                // Notificamos el indice del ingrediente
+                self.ingredienteEliminado({"indice": indice});
+            }
         }
     });
