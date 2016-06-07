@@ -31,7 +31,7 @@ angular
                 scope.notificarTexto = function(){
 
                     // Notificamos al scope padre
-                    scope.alHacerClick({ texto: scope.texto });
+                    scope.alHacerClick({ receta: scope.receta });
                 };
 
                 // Añadimos el ingrediente procedente del componente
@@ -43,6 +43,11 @@ angular
                 scope.eliminarIngrediente = function(indice){
                     scope.receta.ingredientes.splice(indice,1);
                 };
-            },
+
+                scope.puedoGuardar = function(){
+                    return scope.receta.nombre &&
+                        scope.receta.ingredientes.length > 0;
+                }
+            }
         };
     });

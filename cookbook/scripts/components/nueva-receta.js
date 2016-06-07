@@ -10,8 +10,7 @@ angular
         templateUrl: "views/nueva-receta.html",
         controller: function(ServicioRecetas){
             var self = this;
-            self.guardarReceta=function(texto){
-                var receta = {nombre: texto};
+            self.guardarReceta=function(receta){
                 ServicioRecetas
                     .guardarReceta(receta)
                     .then(function(respuesta){

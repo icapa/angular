@@ -8,15 +8,19 @@
         type="text"
         placeholder="Pe. Solomillo a la pimienta"
         ng-model="receta.nombre"
-        required>
-    <button
-        ng-click="notificarTexto()"
-        ng-disabled="">
-    Aceptar</button>
+        required
+        class="u-full-width">
+
     <ingredientes
         coleccion="receta.ingredientes"
         nuevo-ingrediente="agregarIngrediente(ingrediente)"
         ingrediente-eliminado="eliminarIngrediente(indice)">
     </ingredientes>
+    <button
+        class="u-full-width button-primary"
+        ng-click="notificarTexto()"
+        ng-disabled="!puedoGuardar()">
+        Aceptar
+    </button>
 
 </div>
