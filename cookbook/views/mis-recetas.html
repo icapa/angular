@@ -8,6 +8,11 @@
             <tbody>
             <tr ng-repeat="receta in $ctrl.recetas | filter:$ctrl.filtroRecetas | orderBy:'nombre'">
                 <td>
+                    <img ng-src="{{ $ctrl.obtenerRutaImagen(receta.rutaImagen) }}"
+                    width="60"
+                    height="60">
+                </td>
+                <td>
                     <div>
                         {{ receta.nombre }}
                     </div>

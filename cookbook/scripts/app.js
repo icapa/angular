@@ -1,5 +1,7 @@
 // Setter del modulo
-angular.module("cookbook",["ngComponentRouter"]);
+angular.module("cookbook",[
+   "ngComponentRouter","dahr.ng-image-picker"
+]);
 
 // Configuramos el proveedor "$locationProvider". Establecemos
 // el modo de navegación HTML5 para que funcione el Single Page Application

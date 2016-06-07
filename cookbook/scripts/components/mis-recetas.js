@@ -22,6 +22,9 @@ angular
                 });
             };
 
+            // Obtenemos la ruta absoluta de la imagen
+            self.obtenerRutaImagen = ServicioRecetas.obtenerRutaImagenAbsoluta;
+
         }
 
     });
