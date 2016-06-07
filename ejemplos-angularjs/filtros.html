@@ -17,24 +17,42 @@
 
         <br>
         <label>Min: </label>
-        <span>{{ may| lowercase}}</span>
+        <span>{{textoEnMinusculas}}</span>
 
         <br>
         <label>May: </label>
-        <span>{{ min | uppercase}}</span>
+        <span>{{ textoEnMayusculas}}</span>
+
+        <br>
+        <label>Letra capital: </label>
+        <span>{{ limpsum | LetraCapital}}</span>
 
     </div>
     <script>
         angular.module("test",[]);
 
         angular.module("test")
-                .controller("filtros",function($scope){
+                .controller("filtros",function($scope,$filter){
                     $scope.precio = 23.89;
                     $scope.ahora = new Date();
                     $scope.may="PePe";
                     $scope.min="pEpE"
+                    $scope.textoEnMinusculas = $filter("lowercase")("HoLa QuE AsE");
+                    $scope.textoEnMayusculas = $filter("uppercase")("HoLa QuE AsE");
+
+                    $scope.limpsum = "vAMOS RACING ALEEE";
 
         });
+
+        angular.module("test")
+                .filter("LetraCapital",function(){
+                    // Un filtro siempre:
+                    // 1.- retorna una función
+                    // 2.- Espera al menos un parámetros que es dato de entrada
+                    return function(texto){
+                        return texto[0].toUpperCase() + texto.substring(1).toLowerCase();
+                    }
+                });
     </script>
 </body>
 </html>
