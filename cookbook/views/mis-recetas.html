@@ -1,9 +1,23 @@
 <div class="row">
     <div class="twelve columns">
+        <!-- Filtro de recetas -->
+        <input type="text" ng-model="$ctrl.filtroRecetas.nombre">
+
+        <!-- Lista de recetas -->
         <table class="u-full-width">
             <tbody>
-            <tr ng-repeat="receta in $ctrl.recetas">
-                <td>{{ receta.nombre }}</td>
+            <tr ng-repeat="receta in $ctrl.recetas | filter:$ctrl.filtroRecetas | orderBy:'nombre'">
+                <td>
+                    <div>
+                        {{ receta.nombre }}
+                    </div>
+                    <div>
+                        <small>
+                            {{ receta.ingredientes | ResumenIngredientes }}
+                        </small>
+                    </div>
+
+                </td>
             </tr>
             </tbody>
         </table>

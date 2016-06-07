@@ -10,6 +10,10 @@ angular
             // Cercada para que funcione el this
             var self = this;
 
+            self.filtroRecetas = {
+                nombre:""
+            }
+
             self.$onInit = function(){
                 
                 ServicioRecetas.obtenerRecetas().then(function(respuesta) {
