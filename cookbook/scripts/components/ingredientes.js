@@ -25,8 +25,11 @@ angular
             self.teclaPulsada= function(evento){
                 // Obtengo la tecla pulsada
                 var tecla = evento.which || evento.keyCode;
-                // Si la tecla es el intro
-                if (tecla===13 && self.ingrediente.nombre ){
+                // Si la tecla es el intro, es distinto de cero y no existe
+                if (tecla===13 &&
+                    self.ingrediente.nombre &&
+                    !ingredienteExiste(self.ingrediente.nombre)){
+
                     //Notificamos el nuevo ingrediente
                     self.nuevoIngrediente({"ingrediente": self.ingrediente});
 
@@ -41,6 +44,15 @@ angular
             self.eliminar = function(indice){
                 // Notificamos el indice del ingrediente
                 self.ingredienteEliminado({"indice": indice});
+            };
+
+            function ingredienteExiste(nombreIngrediente){
+                // Pasamos a minusculas
+                //var enMinusculas = nombreIngrediente.toLowerCase();
+                var coincidencias = self.coleccion.filter(function(ingrediente){
+                    return ingrediente.nombre.toLowerCase() === nombreIngrediente.toLowerCase();
+                });
+                return coincidencias.length > 0;
             }
         }
     });

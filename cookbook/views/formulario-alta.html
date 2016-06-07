@@ -1,22 +1,22 @@
 <div>
-    <form name="alta">
-        <label for="nombre-receta">
-            Nombre de la receta
-        </label>
-        <input
-            id="nombre-receta"
-            type="text"
-            placeholder="Pe. Solomillo a la pimienta"
-            ng-model="receta.nombre"
-            required>
-        <button
-            ng-click="notificarTexto()"
-            ng-disabled="alta.$invalid">
-        Aceptar</button>
-        <ingredientes
-            coleccion="receta.ingredientes"
-            nuevo-ingrediente="agregarIngrediente(ingrediente)"
-            ingrediente-eliminado="eliminarIngrediente(indice)">
-        </ingredientes>
-    </form>
+
+    <label for="nombre-receta">
+        Nombre de la receta
+    </label>
+    <input
+        id="nombre-receta"
+        type="text"
+        placeholder="Pe. Solomillo a la pimienta"
+        ng-model="receta.nombre"
+        required>
+    <button
+        ng-click="notificarTexto()"
+        ng-disabled="">
+    Aceptar</button>
+    <ingredientes
+        coleccion="receta.ingredientes"
+        nuevo-ingrediente="agregarIngrediente(ingrediente)"
+        ingrediente-eliminado="eliminarIngrediente(indice)">
+    </ingredientes>
+
 </div>
