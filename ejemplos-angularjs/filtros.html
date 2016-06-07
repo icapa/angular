@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Filtros</title>
+    <script src="node_modules/angular/angular.js"></script>
+</head>
+
+<!-- La directiva ngApp instancia la aplicacion angular js -->
+<body ng-app="test">
+    <div ng-controller="filtros">
+        <label>Filtro currency: </label>
+        <span>{{ precio  | currency}}</span>
+        <br>
+        <label>Fecha: </label>
+        <span>{{ ahora | date:'fullDate'}}</span>
+
+        <br>
+        <label>Min: </label>
+        <span>{{ may| lowercase}}</span>
+
+        <br>
+        <label>May: </label>
+        <span>{{ min | uppercase}}</span>
+
+    </div>
+    <script>
+        angular.module("test",[]);
+
+        angular.module("test")
+                .controller("filtros",function($scope){
+                    $scope.precio = 23.89;
+                    $scope.ahora = new Date();
+                    $scope.may="PePe";
+                    $scope.min="pEpE"
+
+        });
+    </script>
+</body>
+</html>
