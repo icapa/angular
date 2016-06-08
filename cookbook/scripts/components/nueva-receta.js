@@ -17,7 +17,7 @@ angular
 
             self.guardarReceta=function(receta){
                 ServicioRecetas
-                    .guardarReceta(receta)
+                    .guardarReceta(receta,imagenReceta)
                     .then(function(){
                         //
                         // $router tiene los datos relacionados con la ruta
