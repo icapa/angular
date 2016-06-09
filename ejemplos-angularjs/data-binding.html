@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Enlace de datos: Data binding</title>
+    <script src="node_modules/angular/angular.js"></script>
+</head>
+<body ng-app="test">
+
+    <div ng-controller="EnlaceDatos">
+        <p><strong>Two-way data binding</strong></p>
+        <p><input type="text" ng-model="textoEnlazadoEnDobleSentido"> </p>
+        <p>{{textoEnlazadoEnDobleSentido}}</p>
+
+        <p><strong>Two-way data binding con updateOn</strong></p>
+        <p><input
+                type="text"
+                ng-model="textoEnlazadoEnDobleSentidoUpdate"
+                ng-model-options="{updateOn: 'blur'}"> </p>
+        <p>{{textoEnlazadoEnDobleSentidoUpdate}}</p>
+
+        <p><strong>Two-way data binding con debounce</strong></p>
+        <p><input
+                type="text"
+                ng-model="textoEnlazadoEnDobleSentidoDebounce"
+                ng-model-options="{debounce: 3000}"> </p>
+        <p>{{textoEnlazadoEnDobleSentidoDebounce}}</p>
+        <p><strong>One time binding</strong></p>
+        <p><input
+                type="text"
+                ng-model="textoEnlazadoEnDobleSentidoDebounce"
+                ng-model-options="{debounce: 3000}"> </p>
+        <p>{{textoEnlazadoSimple}}</p>
+        <button ng-click="mostrarEnConsola()">Mostrar en consola</button>
+    </div>
+    <script>
+    angular.module("test",[]);
+
+    angular.module("test")
+    .controller("EnlaceDatos",function($scope,$filter){
+        $scope.textoEnlazadoEnDobleSentido="Soy un texto two-way";
+        $scope.textoEnlazadoEnDobleSentidoUpdate="Soy un texto con update ON";
+        $scope.textoEnlazadoEnDobleSentidoDebounce="Soy un texto con Debounce";
+        $scope.textoEnlazadoSimple = " Soy un texto simple"
+
+        $scope.mostrarEnConsola=function(){
+            console.log("$scope.textoEnlazadoEnDobleSendido: " + $scope.textoEnlazadoEnDobleSentido);
+            console.log("$scope.textoEnlazadoEnDobleSendidoUpdate: " + $scope.textoEnlazadoEnDobleSentidoUpdate);
+
+            console.log("$scope.textoEnlazadoEnDobleSendidoDebounce: " + $scope.textoEnlazadoEnDobleSentidoDebounce);
+
+            console.log("$scope.textoEnlazadoSimple: " + $scope.textoEnlazadoSimple);
+
+
+
+
+        }
+
+    });
+
+</script>
+</body>
+</html>
