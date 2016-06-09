@@ -11,6 +11,9 @@
         <div>
             <button ng-click="obtenerPosicion()">Promesa de posicion</button>
         </div>
+        <div>
+            <button ng-click="obtenerValorEmpaquetado()">Valor empaquetado</button>
+        </div>
     </div>
      <script>
     angular.module("test",[]);
@@ -47,6 +50,10 @@
                 );
                 return diferido.promise;
             };
+
+            this.valorEmpaquetadoEnPromesa = function(){
+                return $q.when({"mensaje": "Hola when mundo"})
+            };
       });
 
     // Controlador con ejemplos de promesas
@@ -75,7 +82,13 @@
                 Promesas.obtenerPosicion().then(function(coordenadas){
                     console.log(coordenadas);
                 });
-            }
+            };
+
+            $scope.obtenerValorEmpaquetado = function(){
+                Promesas.valorEmpaquetadoEnPromesa().then(function(datos){
+                    console.log(datos);
+                });
+            };
         });
 
 </script>
