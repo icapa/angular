@@ -1,11 +1,11 @@
 angular
     .module("cookbook")
-    .service("ServicioRecetas",function($http){
+    .service("ServicioRecetas",function($http,Propiedades){
         // Toda funcionalidad que quieras exponer hacia afuera, tiene
         // que estar publicada en this.
         this.obtenerRecetas = function(){
 
-            return $http.get("http://localhost:8000/api/recetas");
+            return $http.get(Propiedades.urlServidor+Propiedades.endpointRecetas);
 
         };
         // Guardamos la receta
@@ -29,7 +29,7 @@ angular
                 // Hacer el post con la imagen, subimos al servidor
 
                 promesa = $http
-                    .post("http://localhost:8000/upload",
+                    .post(Propiedades.urlServidor+Propiedades.endpointImagenes,
                         datos,
                         configuracion
                     )
@@ -40,13 +40,13 @@ angular
                         // Establecemos la ruta de la imagen en el objeto receta antes de guardarla
                         receta.rutaImagen = ruta;
 
-                        return $http.post("http://localhost:8000/api/recetas",receta);
+                        return $http.post(Propiedades.urlServidor+Propiedades.endpointRecetas,receta);
                     });
 
             }
             // En caso de no haber indicado una imagen
             else{
-                promesa = $http.post("http://localhost:8000/api/recetas",receta);
+                promesa = $http.post(Propiedades.urlServidor+Propiedades.endpointRecetas,receta);
             }
             return promesa;
         };
@@ -54,7 +54,7 @@ angular
         // Montamos la ruta absoluta a la imagen indicada
         this.obtenerRutaImagenAbsoluta = function(rutaRelativa){
             return rutaRelativa
-                ? ("http://localhost:8000/"+rutaRelativa)
+                ? (Propiedades.urlServidor+ "/" + rutaRelativa)
                 : undefined;
 
         };
