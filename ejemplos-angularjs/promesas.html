@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Promesas</title>
+    <script src="node_modules/angular/angular.js"></script>
+</head>
+<body ng-app="test">
+
+    <div ng-controller="EjemploPromesas">
+        <div>
+            <button ng-click="obtenerPosicion()">Promesa de posicion</button>
+        </div>
+    </div>
+     <script>
+    angular.module("test",[]);
+
+    angular
+        .module("test")
+        .service("Promesas",function($q){
+            // Obtenemos un mensaje resolviendo una promesa
+            this.resuelveMensaje=function(){
+                // Crear el objeto diferido.
+                var diferido = $q.defer();
+
+                setTimeout(function(){
+                    // Resolver el objeto diferido
+                    diferido.resolve("soy un mensaje en una promesa resuelta.");
+                },3000);
+                return diferido.promise;
+            };
+
+            this.rechazaMensaje = function(){
+                var diferido = $q.defer();
+                setTimeout(function(){
+                    // Resolver el objeto diferido
+                    diferido.reject("Fallo promesa");
+                },3000);
+            };
+
+            this.obtenerPosicion = function(){
+                var diferido = $q.defer();
+                navigator.geolocation.getCurrentPosition(
+                        function(datos){
+                            diferido.resolve({"coordenadas": datos.coords});
+                        }
+                );
+                return diferido.promise;
+            };
+      });
+
+    // Controlador con ejemplos de promesas
+    angular
+        .module("test")
+        .controller("EjemploPromesas",function ($scope, Promesas) {
+                $scope.resuelveMensaje=function(){
+                    // Usamos then para trabajar con el valor de la promesa
+                    // Como primer parametros pasamos que atiende la resolución de la promesa
+                    Promesas.mensaje().then(function (datos) {
+                        alert(datos);
+                    });
+                };
+
+            $scope.rechazaMensaje=function(){
+                Promesas.rechazaMensaje().then( function(datos){
+                       alert('Resuelta: ' + datos);
+                   },
+                        function(datos){
+                        alert('Rechazada');
+                    });
+                };
+
+
+            $scope.obtenerPosicion = function() {
+                Promesas.obtenerPosicion().then(function(coordenadas){
+                    console.log(coordenadas);
+                });
+            }
+        });
+
+</script>
+</body>
+</html>
